@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/zeljkofilipin/wdio-realworld/issues"
   },
-  "homepage": "https://github.com/zeljkofilipin/wdio-realworld#readme"
+  "homepage": "https://github.com/zeljkofilipin/wdio-realworld#readme",
+  "dependencies": {
+    "@wdio/cli": "^7.28.0"
+  }
 }
