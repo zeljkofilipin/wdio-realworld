@@ -11,5 +11,11 @@ describe('Homepage', function () {
 
     // Get the URL of the sign in page. It should include 'login'
     await expect(browser).toHaveUrl('/login', { containing: true });
+
+    // Click the 'Conduit' logo
+    await $('=conduit').click();
+
+    // Get the URL of the sign in page. It should include 'login'
+    await expect(browser).toHaveUrl('http://localhost:8080/');
   });
 });
