@@ -7,7 +7,7 @@ describe('Homepage', function () {
     await expect(browser).toHaveTitle('Conduit');
 
     // Click the 'Sign in' navigation link
-    await $('[href*=login]').click();
+    await $('=Sign in').click();
 
     // Get the URL of the sign in page. It should include 'login'
     await expect(browser).toHaveUrl('/login', { containing: true });
