@@ -10,6 +10,6 @@ describe('Homepage', function () {
     await $('[href*=login]').click();
 
     // Get the URL of the sign in page. It should include 'login'
-    await expect(browser).toHaveUrl('http://localhost:8080/login');
+    await expect(browser).toHaveUrl('/login', { containing: true });
   });
 });
