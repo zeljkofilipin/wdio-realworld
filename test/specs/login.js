@@ -3,10 +3,12 @@ describe('Login Page', function () {
     await browser.url('./login');
     await $('input[type="email"]').setValue('demo@learnwebdriverio.com');
     await $('input[type="password"]').setValue('wdiodemo');
-    await $('button=Sign in').click();
 
-    await $('a[href="/settings"]').waitForExist();
-    await expect(browser.getUrl()).not.toContain('/login');
+    const $signIn = $('button*=Sign in');
+    await $signIn.click();
+    await $signIn.waitForExist({ reverse: true });
+
+    await expect($('.error-messages li')).not.toBeExisting();
   } )
   // should error with a missing username
   // should error with a missing password
