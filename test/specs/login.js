@@ -1,6 +1,8 @@
 describe('Login Page', function () {
-  it('should let you log in', async function () {
+  beforeEach(async function () {
     await browser.url('./login');
+  })
+  it('should let you log in', async function () {
     await $('input[type="email"]').setValue('demo@learnwebdriverio.com');
     await $('input[type="password"]').setValue('wdiodemo');
 
