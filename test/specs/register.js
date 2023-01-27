@@ -17,7 +17,7 @@ describe('Register Page', function () {
     await register.register('register', 'register@learnwebdriverio.com', '');
     await expect(register.error).toHaveText(`email can't be blank`);
   } )
-  it.only('requires unique username', async function () {
+  it('requires unique username', async function () {
     await register.register('demo', 'register2@learnwebdriverio.com', 'password');
     await expect(register.error).toHaveText(`username is already taken.`);
   } )
