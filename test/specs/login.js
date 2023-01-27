@@ -8,6 +8,17 @@ class Auth {
     await this.$email.setValue(email);
     await this.$password.setValue(password);
     await this.$signIn.click();
+    browser.waitUntil(
+      () => {
+        const signInExists = this.$signIn.isExisting();
+        const errorExists = this.$errorMessages.isExisting();
+        return !signInExists || errorExists;
+      },
+      {
+        timoutMsg:
+          'The "Sign in" button still exists and an error never appeared'
+      }
+    );
   }
 }
 
@@ -19,7 +30,6 @@ describe('Login Page', function () {
   })
   it('should let you log in', async function () {
     await auth.login('demo@learnwebdriverio.com', 'wdiodemo');
-    await auth.$signIn.waitForExist({ reverse: true });
     await expect(auth.$errorMessages).not.toBeExisting();
   } )
   it('should error with a missing username', async function () {
