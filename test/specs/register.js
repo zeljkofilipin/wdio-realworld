@@ -7,7 +7,6 @@ describe('Register Page', function () {
   })
   it('requires username', async function () {
     await register.register('', 'register@learnwebdriverio.com', 'password');
-    await browser.pause(3000)
     await expect(register.error).toHaveText(`username can't be blank`);
   } )
 }
