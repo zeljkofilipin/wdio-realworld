@@ -13,5 +13,9 @@ describe('Register Page', function () {
     await register.register('register', '', 'password');
     await expect(register.error).toHaveText(`email can't be blank`);
   } )
+  it('requires password', async function () {
+    await register.register('register', 'register@learnwebdriverio.com', '');
+    await expect(register.error).toHaveText(`email can't be blank`);
+  } )
 }
 )
