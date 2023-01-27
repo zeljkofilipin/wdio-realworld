@@ -29,5 +29,9 @@ describe('Register Page', function () {
     await register.register('register2', 'demo@learnwebdriverio.com', 'password');
     await expect(register.error).toHaveText(`email is already taken.`);
   } )
+  it('opens home page after registration', async function () {
+    await register.register('register3', 'register3@learnwebdriverio.com', 'password');
+    await expect(browser).toHaveUrl('https://demo.learnwebdriverio.com/')
+  } )
 }
 )
