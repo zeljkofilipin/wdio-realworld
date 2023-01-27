@@ -9,5 +9,9 @@ describe('Register Page', function () {
     await register.register('', 'register@learnwebdriverio.com', 'password');
     await expect(register.error).toHaveText(`username can't be blank`);
   } )
+  it('requires email', async function () {
+    await register.register('register', '', 'password');
+    await expect(register.error).toHaveText(`email can't be blank`);
+  } )
 }
 )
