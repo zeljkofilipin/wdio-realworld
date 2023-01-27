@@ -25,5 +25,9 @@ describe('Register Page', function () {
     await register.register('register2', 'register2', 'password');
     await expect(register.error).toHaveText(`email is invalid`);
   } )
+  it('requires unique email', async function () {
+    await register.register('register2', 'demo@learnwebdriverio.com', 'password');
+    await expect(register.error).toHaveText(`email is already taken.`);
+  } )
 }
 )
