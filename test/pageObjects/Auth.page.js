@@ -4,6 +4,10 @@ class Auth {
   get $signIn () { return $('button*=Sign in'); }
   get $errorMessages () { return $('.error-messages li'); }
 
+  async load() {
+    await browser.url('./login');
+  }
+
   async login ({ email, password} ) {
     await this.$email.setValue(email);
     await this.$password.setValue(password);
