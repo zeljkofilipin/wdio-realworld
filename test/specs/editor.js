@@ -1,5 +1,6 @@
 const Auth = require('../pageObjects/Auth.page');
 const Editor = require('../pageObjects/Editor.page');
+const { user1 } = require('../fixtures/users');
 
 const auth = new Auth();
 const editor = new Editor();
@@ -7,7 +8,7 @@ const editor = new Editor();
 describe('Post Editor', function () {
   before(async function () {
     await browser.url('./login');
-    await auth.login('demo@learnwebdriverio.com', 'wdiodemo');
+    await auth.login(user1.email, user1.password);
   })
   this.beforeEach(async function () {
     await browser.url('./editor');
