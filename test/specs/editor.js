@@ -10,7 +10,7 @@ describe('Post Editor', function () {
     await auth.load();
     await auth.login(user1);
   })
-  this.beforeEach(async function () {
+  beforeEach(async function () {
     await browser.url('./editor');
   })
   it('should load page properly', async function () {
