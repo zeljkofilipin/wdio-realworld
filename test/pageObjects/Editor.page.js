@@ -4,5 +4,9 @@ class Editor {
   get $body () { return $('[data-qa-id="editor-body"]'); }
   get $tags () { return $('[data-qa-id="editor-tags"]'); }
   get $publish () { return $('[data-qa-id="editor-publish"]'); }
+
+  async load() {
+    await browser.url('./editor');
+  }
   }
 module.exports = Editor;
