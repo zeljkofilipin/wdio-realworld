@@ -8,7 +8,7 @@ const editor = new Editor();
 describe('Post Editor', function () {
   before(async function () {
     await browser.url('./login');
-    await auth.login(user1.email, user1.password);
+    await auth.login(user1);
   })
   this.beforeEach(async function () {
     await browser.url('./editor');
