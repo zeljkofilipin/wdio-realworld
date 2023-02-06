@@ -14,7 +14,7 @@ describe('Post Editor', function () {
     editor.load();
   })
   it('should load page properly', async function () {
-    await expect(browser).toHaveUrl('editor', { containing: true });
+    await expect(browser).toHaveUrl(editor.url.href);
     await expect(editor.$title).toBeExisting();
     await expect(editor.$description).toBeExisting();
     await expect(editor.$body).toBeExisting();
