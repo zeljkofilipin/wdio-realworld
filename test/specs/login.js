@@ -3,9 +3,6 @@ const { user1 } = require('../fixtures/users');
 const auth = new Auth();
 
 describe('Login Page', function () {
-  beforeEach(async function () {
-    await auth.load();
-  })
   it('should let you log in', async function () {
     await auth.login(user1);
     await expect(auth.$errorMessages).not.toBeExisting();

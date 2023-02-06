@@ -11,6 +11,7 @@ class Auth extends Generic {
   get $errorMessages () { return $('.error-messages li'); }
 
   async login ({ email, password} ) {
+    await super.load(this.path);
     await this.$email.setValue(email);
     await this.$password.setValue(password);
     await this.$signIn.click();
