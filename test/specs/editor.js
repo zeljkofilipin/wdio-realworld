@@ -21,9 +21,16 @@ describe('Post Editor', function () {
     await expect(editor.$tags).toBeExisting();
     await expect(editor.$publish).toBeExisting();
   });
-  it('should let you publish a new post', async function () {
+  it.only('should let you publish a new post', async function () {
     await editor.$title.setValue('Test Title');
     await editor.$description.setValue('Test Description');
     await editor.$body.setValue('Test Body');
-});
+    await editor.$tags.setValue('Tag1');
+    await editor.$tags.keys('Enter');
+    await editor.$publish.click();
+
+    await expect(browser).toHaveUrl('articles/test-title', { containing: true });
+
+    await $('button*=Delete Article').click()
+  });
 });
