@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/zeljkofilipin/wdio-realworld#readme",
   "devDependencies": {
-    "@wdio/cli": "^8.0.13",
-    "@wdio/local-runner": "^8.0.13",
-    "@wdio/mocha-framework": "^8.0.13",
-    "@wdio/spec-reporter": "^8.0.13"
+    "@wdio/cli": "^7.30.0",
+    "@wdio/local-runner": "^7.30.0",
+    "@wdio/mocha-framework": "^7.26.0",
+    "@wdio/spec-reporter": "^7.29.1"
   }
 }
