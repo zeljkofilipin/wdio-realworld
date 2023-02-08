@@ -16,6 +16,6 @@ describe('Homepage', function () {
     await $('=conduit').click();
 
     // Get the URL of the sign in page. It should include 'login'
-    await expect(browser).toHaveUrl('http://localhost:8080/');
+    await expect(browser).toHaveUrl('https://demo.learnwebdriverio.com/');
   });
 });
