@@ -22,12 +22,12 @@ describe('Post Editor', function () {
     await expect(editor.$publish).toBeExisting();
   });
   it.only('should let you publish a new post', async function () {
-    await editor.$title.setValue('Test Title');
-    await editor.$description.setValue('Test Description');
-    await editor.$body.setValue('Test Body');
-    await editor.$tags.setValue('Tag1');
-    await editor.$tags.keys('Enter');
-    await editor.$publish.click();
+    editor.submitArticle({
+      title: 'Test Title',
+      description: 'Test Description',
+      body: 'Test Body',
+      tags: ['Tag1']
+    });
 
     await expect(browser).toHaveUrl('articles/test-title', { containing: true });
 
