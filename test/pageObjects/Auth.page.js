@@ -15,10 +15,10 @@ class Auth extends Generic {
     await this.$email.setValue(email);
     await this.$password.setValue(password);
     await this.$signIn.click();
-    browser.waitUntil(
-      () => {
-        const signInExists = this.$signIn.isExisting();
-        const errorExists = this.$errorMessages.isExisting();
+    await browser.waitUntil(
+      async () => {
+        const signInExists = await this.$signIn.isExisting();
+        const errorExists = await this.$errorMessages.isExisting();
         return !signInExists || errorExists;
       },
       {
