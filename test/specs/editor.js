@@ -5,6 +5,9 @@ const { user1 } = require('../fixtures/users');
 const auth = new Auth();
 const editor = new Editor();
 
+const Chance = require('chance');
+const chance = new Chance();
+
 describe('Post Editor', function () {
   before(async function () {
     await auth.load();
@@ -21,15 +24,20 @@ describe('Post Editor', function () {
     await expect(editor.$tags).toBeExisting();
     await expect(editor.$publish).toBeExisting();
   });
-  it.only('should let you publish a new post', async function () {
-    editor.submitArticle({
-      title: 'Test Title',
-      description: 'Test Description',
-      body: 'Test Body',
-      tags: ['Tag1']
-    });
+  it('should let you publish a new post', async function () {
+    const articleDetails = {
+      title: chance.sentence({ words: 3 }),
+      description: chance.sentence({ words: 7 }),
+      body: chance.paragraph({ sentences: 4 }),
+      tags: [chance.word(), chance.word()]
+    };
+    editor.submitArticle(articleDetails);
 
-    await expect(browser).toHaveUrl('articles/test-title', { containing: true });
+    const slug = articleDetails.title
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+    await expect(browser).toHaveUrl(`articles/${slug}`, { containing: true });
 
     await $('button*=Delete Article').click()
   });
