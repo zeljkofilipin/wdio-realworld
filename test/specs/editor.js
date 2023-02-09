@@ -1,9 +1,11 @@
 const Auth = require('../pageObjects/Auth.page');
 const Editor = require('../pageObjects/Editor.page');
+const Article = require('../pageObjects/Article.page');
 const { user1 } = require('../fixtures/users');
 
 const auth = new Auth();
 const editor = new Editor();
+const article = new Article();
 
 const Chance = require('chance');
 const chance = new Chance();
@@ -31,14 +33,11 @@ describe('Post Editor', function () {
       body: chance.paragraph({ sentences: 4 }),
       tags: [chance.word(), chance.word()]
     };
-    editor.submitArticle(articleDetails);
+    await editor.submitArticle(articleDetails);
 
-    const slug = articleDetails.title
-      .toLowerCase()
-      .replace(/ /g, '-')
-      .replace(/[^\w-]+/g, '');
-    await expect(browser).toHaveUrl(`articles/${slug}`, { containing: true });
+    await expect(article.$title).toHaveText(articleDetails.title);
+    await expect(article.$body).toHaveText(articleDetails.body);
 
-    await $('button*=Delete Article').click()
+    await article.$delete.click();
   });
 });
