@@ -16,7 +16,7 @@ describe('Post Editor', function () {
     await auth.login(user1);
   })
   beforeEach(async function () {
-    editor.load();
+    await editor.load();
   })
   it.skip('should load page properly', async function () {
     await expect(browser).toHaveUrl(editor.url.href);
