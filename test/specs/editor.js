@@ -37,6 +37,7 @@ describe('Post Editor', function () {
 
     await expect(article.$title).toHaveText(articleDetails.title);
     await expect(article.$body).toHaveText(articleDetails.body);
+    expect(await article.tags).toEqual(articleDetails.tags);
 
     await article.$delete.click();
   });
