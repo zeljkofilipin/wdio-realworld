@@ -15,10 +15,10 @@ class Editor extends Generic {
     await this.$title.setValue(title);
     await this.$description.setValue(description);
     await this.$body.setValue(body);
-    await tags.forEach(async (tag) => {
+    for (const tag of tags) {
       await this.$tags.setValue(tag);
       await this.$tags.keys('Enter');
-    });
+    };
     await this.$publish.click(); }
 }
 module.exports = Editor;
