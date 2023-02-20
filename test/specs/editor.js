@@ -49,5 +49,13 @@ describe('Post Editor', function () {
       await browser.refresh();
       await expect(browser.acceptAlert()).resolves.not.toThrow();
     });
+    it.only('should warn you when trying to change URL', async function () {
+      await $('=Home').click();
+      const alertText = await browser.getAlertText();
+      await expect(alertText).toEqual(
+        'Do you really want to leave? You have unsaved changes!'
+      );
+      await browser.acceptAlert();
+      });
   });
 });
