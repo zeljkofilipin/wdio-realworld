@@ -41,4 +41,13 @@ describe('Post Editor', function () {
 
     await article.$delete.click();
   });
+  describe('"Unsaved Changes" alerts', function () {
+    beforeEach(async function () {
+      await editor.$title.setValue('Unsaved Change');
+    });
+    it('should alert you when using browser navigation', async function () {
+      await browser.refresh();
+      await expect(browser.acceptAlert()).resolves.not.toThrow();
+    });
+  });
 });
