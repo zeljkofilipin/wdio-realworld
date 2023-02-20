@@ -49,7 +49,7 @@ describe('Post Editor', function () {
       await browser.refresh();
       await expect(browser.acceptAlert()).resolves.not.toThrow();
     });
-    it.only('should warn you when trying to change URL', async function () {
+    it('should warn you when trying to change URL', async function () {
       await $('=Home').click();
       const alertText = await browser.getAlertText();
       await expect(alertText).toEqual(
