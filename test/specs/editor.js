@@ -7,9 +7,6 @@ const auth = new Auth();
 const editor = new Editor();
 const article = new Article();
 
-const Chance = require('chance');
-const chance = new Chance();
-
 describe('Post Editor', function () {
   before(async function () {
     await auth.load();
@@ -28,10 +25,10 @@ describe('Post Editor', function () {
   });
   it('should let you publish a new post', async function () {
     const articleDetails = {
-      title: chance.sentence({ words: 3 }),
-      description: chance.sentence({ words: 7 }),
-      body: chance.paragraph({ sentences: 4 }),
-      tags: [chance.word(), chance.word()]
+      title: global.chance.sentence({ words: 3 }),
+      description: global.chance.sentence({ words: 7 }),
+      body: global.chance.paragraph({ sentences: 4 }),
+      tags: [global.chance.word(), global.chance.word()]
     };
     await editor.submitArticle(articleDetails);
 
