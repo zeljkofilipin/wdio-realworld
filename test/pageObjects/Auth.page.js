@@ -2,19 +2,24 @@ const Generic = require('./Generic.page');
 
 class Auth extends Generic {
   constructor() {
-    super('./login')
+    super('./login');
   }
 
-  get $email () { return $('input[type="email"]'); }
-  get $password () { return $('input[type="password"]'); }
-  get $signIn () { return $('button*=Sign in'); }
-  get $errorMessages () { return $('.error-messages li'); }
+  get $email() { return $('input[type="email"]'); }
 
-  async clearSession () {
-    await browser.execute(function () {
+  get $password() { return $('input[type="password"]'); }
+
+  get $signIn() { return $('button*=Sign in'); }
+
+  get $errorMessages() { return $('.error-messages li'); }
+
+  async clearSession() {
+    await browser.execute(() => {
       window.localStorage.clear();
-    }); }
-  async login ({ email, password} ) {
+    });
+  }
+
+  async login({ email, password }) {
     await super.load(this.path);
     await this.$email.setValue(email);
     await this.$password.setValue(password);
@@ -27,8 +32,8 @@ class Auth extends Generic {
       },
       {
         timoutMsg:
-          'The "Sign in" button still exists and an error never appeared'
-      }
+          'The "Sign in" button still exists and an error never appeared',
+      },
     );
   }
 }
