@@ -1,6 +1,9 @@
 const Home = require('../pageObjects/Home.page');
+const Auth = require('../pageObjects/Auth.page');
+const { user1 } = require('../fixtures/users');
 
 const home = new Home();
+const auth = new Auth();
 
 describe('Homepage', function (){
   describe('Anonymous', function () {
@@ -17,6 +20,13 @@ describe('Homepage', function (){
     })
   });
   describe('Logged In', function () {
-    // we'll fill this out soon
+    before(async function () {
+      await auth.load();
+      await auth.login(user1);
+      await home.load();
+    });
+    it('should show both feed tabs', async function () {
+      expect(await home.feedTabsText).toEqual(['Your Feed', 'Global Feed']);
+    });
   });
 });
