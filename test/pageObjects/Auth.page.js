@@ -10,6 +10,10 @@ class Auth extends Generic {
   get $signIn () { return $('button*=Sign in'); }
   get $errorMessages () { return $('.error-messages li'); }
 
+  async clearSession () {
+    await browser.execute(function () {
+      window.localStorage.clear();
+    }); }
   async login ({ email, password} ) {
     await super.load(this.path);
     await this.$email.setValue(email);

@@ -26,9 +26,7 @@ describe('Homepage', function (){
       await home.load();
     });
     after(async function () {
-      await browser.execute(function () {
-        window.localStorage.clear();
-      });
+      await auth.clearSession();
     });
     it('should show both feed tabs', async function () {
       expect(await home.feedTabsText).toEqual(['Your Feed', 'Global Feed']);
