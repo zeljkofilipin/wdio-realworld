@@ -1,3 +1,5 @@
+'use strict';
+
 const Auth = require( '../pageObjects/Auth.page' );
 const Editor = require( '../pageObjects/Editor.page' );
 const Article = require( '../pageObjects/Article.page' );

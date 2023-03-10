@@ -1,3 +1,5 @@
+'use strict';
+
 const Generic = require( './Generic.page' );
 
 class Editor extends Generic {

@@ -1,3 +1,5 @@
+'use strict';
+
 const Register = require( '../pageObjects/Register.page' );
 
 const register = new Register();

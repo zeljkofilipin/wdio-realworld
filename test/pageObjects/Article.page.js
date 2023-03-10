@@ -1,3 +1,5 @@
+'use strict';
+
 const Generic = require( './Generic.page' );
 
 class Article extends Generic {

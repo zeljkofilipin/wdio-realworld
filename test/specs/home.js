@@ -1,3 +1,5 @@
+'use strict';
+
 const Home = require( '../pageObjects/Home.page' );
 const Auth = require( '../pageObjects/Auth.page' );
 const { user1 } = require( '../fixtures/users' );

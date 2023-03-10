@@ -1,3 +1,5 @@
+'use strict';
+
 const users = {
 	user1: {
 		email: 'demo@learnwebdriverio.com',

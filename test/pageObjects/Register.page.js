@@ -1,3 +1,5 @@
+'use strict';
+
 class Register {
 	get email() { return $( 'input[placeholder="Email"]' ); }
 

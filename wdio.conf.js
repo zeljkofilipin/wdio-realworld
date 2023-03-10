@@ -1,3 +1,5 @@
+'use strict';
+
 const Chance = require( 'chance' );
 
 if ( !process.env.SEED ) {
