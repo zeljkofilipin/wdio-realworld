@@ -25,6 +25,11 @@ describe('Homepage', function (){
       await auth.login(user1);
       await home.load();
     });
+    after(async function () {
+      await browser.execute(function () {
+        window.localStorage.clear();
+      });
+    });
     it('should show both feed tabs', async function () {
       expect(await home.feedTabsText).toEqual(['Your Feed', 'Global Feed']);
     });
