@@ -23,23 +23,7 @@ describe( 'Homepage', () => {
 	} );
 	describe( 'Logged In', () => {
 		before( async function () {
-			// 1. Require our Api file
-			const Api = require( '../../utils/Api' );
-
-			// 2. Instantiate a new Api instance with the url of our Api
-			const api = new Api( 'http://localhost:5000/api/' );
-
-			// 3. Call the `getAuthToken` function
-			const token = await api.getAuthToken( user1 );
-
-			// 4. Load the page in an unauthorized state
-			await home.load();
-
-			// 5. Set the token
-			await browser.execute( ( browserToken ) => {
-				window.localStorage.setItem( 'id_token', browserToken );
-			}, token );
-
+			await browser.loginViaApi( user1 );
 			await home.load();
 		} );
 		after( async () => {
