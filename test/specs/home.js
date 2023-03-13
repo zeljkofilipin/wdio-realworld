@@ -23,7 +23,7 @@ describe( 'Homepage', () => {
 	} );
 	describe( 'Logged In', () => {
 		before( async function () {
-			await browser.loginViaApi( user1 );
+			await auth.loginViaApi( user1 );
 			await home.load();
 		} );
 		after( async () => {

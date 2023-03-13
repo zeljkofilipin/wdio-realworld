@@ -1,5 +1,6 @@
 'use strict';
 
+const Api = require( '../../utils/Api' );
 const Generic = require( './Generic.page' );
 
 class Auth extends Generic {
@@ -37,6 +38,19 @@ class Auth extends Generic {
           'The "Sign in" button still exists and an error never appeared'
 			}
 		);
+	}
+
+	async loginViaApi( user ) {
+		const api = new Api( 'http://localhost:3000/api/' );
+		const token = await api.getAuthToken( user );
+
+		// load the base page so we can set the token
+		await browser.url( './' );
+
+		// inject the auth token
+		await browser.execute( ( browserToken ) => {
+			window.localStorage.setItem( 'id_token', browserToken );
+		}, token );
 	}
 }
 module.exports = Auth;

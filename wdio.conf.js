@@ -1,6 +1,5 @@
 'use strict';
 
-const Api = require( './utils/Api' );
 const Chance = require( 'chance' );
 
 if ( !process.env.SEED ) {
@@ -217,18 +216,6 @@ exports.config = {
 		//     uploadThroughput: 1000000
 		//     });
 		global.chance = new Chance( process.env.SEED + specs[ 0 ] );
-		global.api = new Api( 'http://localhost:3000/api/' );
-		browser.addCommand( 'loginViaApi', async function ( user ) {
-			const token = await global.api.getAuthToken( user );
-
-			// load the base page so we can set the token
-			await browser.url( './' );
-
-			// inject the auth token
-			await browser.execute( ( browserToken ) => {
-				window.localStorage.setItem( 'id_token', browserToken );
-			}, token );
-		} );
 	}
 	/**
 	 * Runs before a WebdriverIO command gets executed.
