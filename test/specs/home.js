@@ -20,6 +20,10 @@ describe( 'Homepage', () => {
 		it( 'should only show the global feed tab', async () => {
 			expect( await home.feedTabsText ).toEqual( [ 'Global Feed' ] );
 		} );
+		it( 'should default to showing the global feed', async function () {
+			// get all tabs with an 'active' class, check only one returns with correct text
+			expect( await home.activeFeedTabText ).toEqual( [ 'Global Feed' ] );
+		} );
 	} );
 	describe( 'Logged In', () => {
 		before( async function () {
