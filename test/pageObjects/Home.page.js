@@ -1,6 +1,7 @@
 'use strict';
 
 const Generic = require( './Generic.page' );
+const { getTrimmedText } = require( '../../utils/functions' );
 
 class Home extends Generic {
 	constructor() {
@@ -14,10 +15,10 @@ class Home extends Generic {
 		return this.$feedsContainer.$$( '[data-qa-type="feed-tab"]' );
 	}
 	get feedTabsText() {
-		return this.$$feedTabs.map( ( $tab ) => $tab.getText() );
+		return this.$$feedTabs.map( getTrimmedText );
 	}
 	get activeFeedTabText() {
-		return this.$feedsContainer.$$( '[data-qa-type="feed-tab"] .active' ).map( ( $tab ) => $tab.getText() );
+		return this.$feedsContainer.$$( '[data-qa-type="feed-tab"] .active' ).map( getTrimmedText );
 	}
 }
 
