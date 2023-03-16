@@ -36,5 +36,15 @@ describe( 'Homepage', () => {
 		it( 'should show both feed tabs', async () => {
 			expect( await home.feedTabsText ).toEqual( [ 'Your Feed', 'Global Feed' ] );
 		} );
+		it( 'should let you switch between global and personal feeds', async function () {
+			// click on 'Your feed' tab
+			await home.clickTab( 'Your Feed' );
+			// validate 'active' tabs are correct
+			expect( await home.activeFeedTabText ).toEqual( [ 'Your Feed' ] );
+			// click 'Global' tab
+			await home.clickTab( 'Global Feed' );
+			// validate again
+			expect( await home.activeFeedTabText ).toEqual( [ 'Global Feed' ] );
+		} );
 	} );
 } );

@@ -20,6 +20,19 @@ class Home extends Generic {
 	get activeFeedTabText() {
 		return this.$feedsContainer.$$( '[data-qa-type="feed-tab"] .active' ).map( getTrimmedText );
 	}
+
+	async clickTab( tabText ) {
+		const tabToClick = await this.$$feedTabs.find(
+			async ( $tab ) => await $tab.getText() === tabText
+		);
+		await tabToClick.click();
+		await browser.waitUntil(
+			async () => {
+				return ( await this.activeFeedTabText[ 0 ] ) === tabText;
+			},
+			{ timeoutMsg: 'Active tab text never switched to desired text' }
+		);
+	}
 }
 
 module.exports = Home;
