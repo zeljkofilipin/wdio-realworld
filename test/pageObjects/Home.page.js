@@ -8,6 +8,10 @@ class Home extends Generic {
 		super( './' );
 	}
 
+	get $articleLoadingIndicator() {
+		return $( '[data-qa-id="article-loading-indicator"]' );
+	}
+
 	get $feedsContainer() {
 		return $( '[data-qa-id="feed-tabs"]' );
 	}
@@ -32,6 +36,7 @@ class Home extends Generic {
 			},
 			{ timeoutMsg: 'Active tab text never switched to desired text' }
 		);
+		await this.$articleLoadingIndicator.waitForExist( { reverse: true } );
 	}
 }
 
