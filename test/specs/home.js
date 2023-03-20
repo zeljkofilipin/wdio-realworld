@@ -46,5 +46,16 @@ describe( 'Homepage', () => {
 			// validate again
 			expect( await home.activeFeedTabText ).toEqual( [ 'Global Feed' ] );
 		} );
+		describe( 'Personal Feed', function () {
+			before( async function () {
+				// ensure we're on the personal feed tab
+				if ( await home.activeFeedTabText[ 0 ] !== 'Your Feed' ) {
+					await home.clickTab( 'Your Feed' );
+				}
+			} );
+			it( 'should show most recent articles from people you follow', async function () {
+				await expect( home.currentFeed.$$articles ).toBeElementsArrayOfSize( 1 );
+			} );
+		} );
 	} );
 } );
