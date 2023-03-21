@@ -56,6 +56,10 @@ describe( 'Homepage', () => {
 			it( 'should show most recent articles from people you follow', async function () {
 				await expect( home.currentFeed.$$articles ).toBeElementsArrayOfSize( 1 );
 			} );
+			it( 'should show most recent article first', async function () {
+				const article = await home.currentFeed.articles[ 0 ];
+				await expect( article.$title ).toHaveText( 'An Article' );
+			} );
 		} );
 	} );
 } );
