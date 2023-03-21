@@ -58,7 +58,13 @@ describe( 'Homepage', () => {
 			} );
 			it( 'should show most recent article first', async function () {
 				const article = await home.currentFeed.articles[ 0 ];
-				await expect( article.$title ).toHaveText( 'An Article' );
+				const firstArticleDetails = await article.getDetails();
+				expect( firstArticleDetails ).toMatchObject( {
+					author: 'singlearticleuser',
+					date: 'May 1, 2020',
+					title: 'An Article',
+					description: 'A Single Article'
+				} );
 			} );
 		} );
 	} );
