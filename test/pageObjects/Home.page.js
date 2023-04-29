@@ -5,8 +5,9 @@ const Generic = require( './Generic.page' );
 const { getTrimmedText } = require( '../../utils/functions' );
 
 class Home extends Generic {
-	constructor() {
-		super( './' );
+	// set default URL to homepage, but allow for a custom URL to be passed in
+	constructor( url = './' ) {
+		super( url );
 	}
 
 	get $articleLoadingIndicator() {
