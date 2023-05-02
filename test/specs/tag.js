@@ -4,7 +4,7 @@ const { user1 } = require( '../fixtures/users' );
 const Tag = require( '../pageObjects/Tag.page' );
 
 describe( 'Tag Feed', function () {
-	let articleDetails, tagName, tagPage, articleResponse;
+	let articleDetails, tagName, tagPage;
 
 	before( async function () {
 		articleDetails = {
@@ -17,7 +17,7 @@ describe( 'Tag Feed', function () {
 		tagName = articleDetails.tagList[ 0 ];
 
 		// create the article we need to get the specific tag
-		articleResponse = await global.api.createArticle( user1, articleDetails );
+		await global.api.createArticle( user1, articleDetails );
 
 		tagPage = new Tag( tagName );
 
