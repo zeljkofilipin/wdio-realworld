@@ -8,15 +8,17 @@ describe( 'Tag Feed', function () {
 
 	before( async function () {
 		articleDetails = {
-			title: chance.sentence( { words: 3 } ),
-			description: chance.sentence( { words: 7 } ),
-			body: chance.paragraph( { sentences: 2 } ),
-			tagList: [ chance.word( { length: 30 } ) ]
+			title: global.chance.sentence( { words: 3 } ),
+			description: global.chance.sentence( { words: 7 } ),
+			body: global.chance.paragraph( { sentences: 2 } ),
+			tagList: [ global.chance.word( { length: 30 } ) ]
 		};
+
 		tagName = articleDetails.tagList[ 0 ];
 
 		// create the article we need to get the specific tag
 		articleResponse = await global.api.createArticle( user1, articleDetails );
+
 		tagPage = new Tag( tagName );
 
 		// load the page
