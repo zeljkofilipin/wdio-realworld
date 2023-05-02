@@ -1,26 +1,34 @@
 'use strict';
 
-const got = require( 'got' );
+const axios = require( 'axios' );
 
 class Api {
-	constructor( prefixUrl ) {
-		this.client = got.extend( {
-			prefixUrl,
-			responseType: 'json'
+	constructor( baseURL ) {
+
+		this.api = axios.create( {
+			baseURL,
+			Accept: 'application/json, text/plain, */*',
+			'Content-Type': 'application/json'
 		} );
 	}
-
-	async getAuthToken( { email, password } ) {
-		try {
-			const { body } = await this.client.post( 'users/login', {
-				json: { user: { email, password } }
-			} );
-
-			return body.user.token;
-		} catch ( err ) {
-			console.log( err );
-		}
+	getAuthToken( { email, password } ) {
+		return this.api
+			.post( '/users/login', { user: { email, password } } )
+			.then( ( res ) => res.data.user.token );
+	}
+	async createArticle( user, details ) {
+		const token = await this.getAuthToken( user );
+		const response = await this.api.post( 'articles',
+			{
+				article: details
+			},
+			{
+				headers: {
+					Authorization: `Token ${token}`
+				}
+			}
+		);
+		return response.data.article;
 	}
 }
-
 module.exports = Api;
