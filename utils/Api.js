@@ -30,5 +30,10 @@ class Api {
 		);
 		return response.data.article;
 	}
+	async deleteArticle( user, slug ) {
+		const token = await this.getAuthToken( user );
+		return this.api.delete( `articles/${slug}`, {
+			headers: { Authorization: `Token ${token}` } } );
+	}
 }
 module.exports = Api;

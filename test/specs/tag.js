@@ -4,7 +4,7 @@ const { user1 } = require( '../fixtures/users' );
 const Tag = require( '../pageObjects/Tag.page' );
 
 describe( 'Tag Feed', function () {
-	let articleDetails, tagName, tagPage;
+	let articleDetails, tagName, tagPage, articleResponse;
 
 	before( async function () {
 		articleDetails = {
@@ -17,12 +17,16 @@ describe( 'Tag Feed', function () {
 		tagName = articleDetails.tagList[ 0 ];
 
 		// create the article we need to get the specific tag
-		await global.api.createArticle( user1, articleDetails );
+		articleResponse = await global.api.createArticle( user1, articleDetails );
 
 		tagPage = new Tag( tagName );
 
 		// load the page
 		await tagPage.load();
+	} );
+
+	after( async function () {
+		await global.api.deleteArticle( user1, articleResponse.slug );
 	} );
 
 	it( 'should have tag tab', async function () {
